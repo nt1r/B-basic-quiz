@@ -1,0 +1,24 @@
+# Tasking
+
+- 创建新的个人基本信息
+    - model
+    - controller
+    - service
+    - repository
+    - test cases
+- 查询个人基本信息
+    - controller
+    - service
+    - repository
+    - test cases
+- 增加新的个人教育经历
+    - model
+    - controller
+    - service
+    - repository
+    - test cases
+- 查询个人教育经历列表
+    - controller
+    - service
+    - repository
+    - test cases
