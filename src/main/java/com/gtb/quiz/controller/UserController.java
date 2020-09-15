@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -38,5 +39,10 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public Education addOneEducation(@PathVariable Long userId, @RequestBody @Valid EducationVo educationVo) {
         return educationService.addOneEducation(userId, educationVo);
+    }
+
+    @GetMapping("/{userId}/educations")
+    public List<Education> getEducationListByUserId(@PathVariable Long userId) {
+        return educationService.getEducationListByUserId(userId);
     }
 }

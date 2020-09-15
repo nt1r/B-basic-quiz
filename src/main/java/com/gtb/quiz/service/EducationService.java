@@ -6,6 +6,8 @@ import com.gtb.quiz.util.Converter;
 import com.gtb.quiz.vo.EducationVo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EducationService {
     private final EducationRepository educationRepository;
@@ -17,5 +19,9 @@ public class EducationService {
     public Education addOneEducation(Long userId, EducationVo educationVo) {
         Education education = Converter.convertEducationVo2Education(educationVo, userId);
         return educationRepository.save(education);
+    }
+
+    public List<Education> getEducationListByUserId(Long userId) {
+        return educationRepository.findByUserId(userId);
     }
 }

@@ -31,6 +31,7 @@ class UserControllerTest {
     private final String ADD_USER_URL = PREFIX + "";
     private final String GET_USER_URL = PREFIX + "/%d";
     private final String ADD_EDUCATION_URL = PREFIX + "/%d/educations";
+    private final String GET_EDUCATION_LIST_URL = PREFIX + "/%d/educations";
 
     private final UserVo sampleUserVo = UserVo.builder().name("张三").age(20L).avatar("avatar url").description("班长").build();
     private final EducationVo sampleEducationVo = EducationVo.builder().year(2011L).title("高中经历").description("在XX省XX市XX中学上高中").build();
@@ -108,15 +109,36 @@ class UserControllerTest {
     public void shouldAddOneEducation() throws Exception {
         addSampleUser();
 
-        mockMvc.perform(post(String.format(ADD_EDUCATION_URL, 1)).accept(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(sampleEducationVo)))
-                .andExpect(status().isCreated())
+        addSampleEducation(sampleEducationVo)
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.userId", is(1)))
                 .andExpect(jsonPath("$.year", is(2011)))
                 .andExpect(jsonPath("$.title", is("高中经历")))
                 .andExpect(jsonPath("$.description", is("在XX省XX市XX中学上高中")));
+    }
+
+    private ResultActions addSampleEducation(EducationVo educationVo) throws Exception {
+        return mockMvc.perform(post(String.format(ADD_EDUCATION_URL, 1)).accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(educationVo)))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void shouldGetEducationList() throws Exception {
+        addSampleUser();
+        addSampleEducation(sampleEducationVo);
+
+        mockMvc.perform(get(String.format(GET_EDUCATION_LIST_URL, 1)).accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$.[0].id", is(1)))
+                .andExpect(jsonPath("$.[0].userId", is(1)))
+                .andExpect(jsonPath("$.[0].year", is(2011)))
+                .andExpect(jsonPath("$.[0].title", is("高中经历")))
+                .andExpect(jsonPath("$.[0].description", is("在XX省XX市XX中学上高中")))
+        ;
     }
 }
