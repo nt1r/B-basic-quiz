@@ -1,9 +1,12 @@
 package com.gtb.quiz.controller;
 
+import com.gtb.quiz.entity.User;
 import com.gtb.quiz.service.UserService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.gtb.quiz.vo.UserVo;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @CrossOrigin
@@ -13,5 +16,11 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public User addOneUser(@RequestBody @Valid UserVo userVo) {
+        return userService.addOneUser(userVo);
     }
 }
