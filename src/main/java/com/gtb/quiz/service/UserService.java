@@ -1,9 +1,10 @@
 package com.gtb.quiz.service;
 
+import com.gtb.quiz.entity.Education;
 import com.gtb.quiz.entity.User;
-import com.gtb.quiz.exception.UserNotFoundException;
 import com.gtb.quiz.repository.UserRepository;
 import com.gtb.quiz.util.Converter;
+import com.gtb.quiz.vo.EducationVo;
 import com.gtb.quiz.vo.UserVo;
 import org.springframework.stereotype.Service;
 

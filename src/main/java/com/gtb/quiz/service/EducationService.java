@@ -1,0 +1,21 @@
+package com.gtb.quiz.service;
+
+import com.gtb.quiz.entity.Education;
+import com.gtb.quiz.repository.EducationRepository;
+import com.gtb.quiz.util.Converter;
+import com.gtb.quiz.vo.EducationVo;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EducationService {
+    private final EducationRepository educationRepository;
+
+    public EducationService(EducationRepository educationRepository) {
+        this.educationRepository = educationRepository;
+    }
+
+    public Education addOneEducation(Long userId, EducationVo educationVo) {
+        Education education = Converter.convertEducationVo2Education(educationVo, userId);
+        return educationRepository.save(education);
+    }
+}

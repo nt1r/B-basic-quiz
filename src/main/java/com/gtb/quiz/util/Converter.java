@@ -1,6 +1,8 @@
 package com.gtb.quiz.util;
 
+import com.gtb.quiz.entity.Education;
 import com.gtb.quiz.entity.User;
+import com.gtb.quiz.vo.EducationVo;
 import com.gtb.quiz.vo.UserVo;
 
 public class Converter {
@@ -10,6 +12,15 @@ public class Converter {
                 .age(userVo.getAge())
                 .avatar(userVo.getAvatar())
                 .description(userVo.getDescription())
+                .build();
+    }
+
+    public static Education convertEducationVo2Education(EducationVo educationVo, Long userId) {
+        return Education.builder()
+                .userId(userId)
+                .year(educationVo.getYear())
+                .title(educationVo.getTitle())
+                .description(educationVo.getDescription())
                 .build();
     }
 }
