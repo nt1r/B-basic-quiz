@@ -1,6 +1,7 @@
 package com.gtb.quiz.service;
 
 import com.gtb.quiz.entity.User;
+import com.gtb.quiz.exception.UserNotFoundException;
 import com.gtb.quiz.repository.UserRepository;
 import com.gtb.quiz.util.Converter;
 import com.gtb.quiz.vo.UserVo;
@@ -17,5 +18,9 @@ public class UserService {
     public User addOneUser(UserVo userVo) {
         User user = Converter.convertUserVo2User(userVo);
         return userRepository.save(user);
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(id);
     }
 }

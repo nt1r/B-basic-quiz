@@ -23,4 +23,9 @@ public class UserController {
     public User addOneUser(@RequestBody @Valid UserVo userVo) {
         return userService.addOneUser(userVo);
     }
+
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
+    }
 }
