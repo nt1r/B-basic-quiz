@@ -107,6 +107,7 @@ class UserControllerTest {
 
     @Test
     public void shouldAddOneEducation() throws Exception {
+        // GTB: - 这一句对这个 test 来说是多余的
         addSampleUser();
 
         addSampleEducation(sampleEducationVo)
@@ -130,7 +131,7 @@ class UserControllerTest {
         addSampleUser();
         addSampleEducation(sampleEducationVo);
 
-        mockMvc.perform(get(String.format(GET_EDUCATION_LIST_URL, 1)).accept(MediaType.APPLICATION_JSON)
+        mockMvc.perform(get(String.format(GET_EDUCATION_LIST_URL, 111)).accept(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))

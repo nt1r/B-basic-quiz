@@ -17,6 +17,7 @@ public class EducationService {
     }
 
     public Education addOneEducation(Long userId, EducationVo educationVo) {
+        // GTB: - userId 不存在时怎么处理？
         Education education = Converter.convertEducationVo2Education(educationVo, userId);
         return educationRepository.save(education);
     }

@@ -30,9 +30,10 @@ public class EducationRepository {
             }
         });
 
-        if (educationList.isEmpty()) {
-            throw new EducationNotFoundException("Education not found, userId = " + userId);
-        }
+        // GTB: 为空时就返回 [] 就行了，不需要抛异常
+//        if (educationList.isEmpty()) {
+//            throw new EducationNotFoundException("Education not found, userId = " + userId);
+//        }
 
         return educationList;
     }

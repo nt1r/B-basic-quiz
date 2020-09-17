@@ -5,6 +5,7 @@ import com.gtb.quiz.entity.User;
 import com.gtb.quiz.vo.EducationVo;
 import com.gtb.quiz.vo.UserVo;
 
+// GTB: + 有 Converter
 public class Converter {
     public static User convertUserVo2User(UserVo userVo) {
         return User.builder()
