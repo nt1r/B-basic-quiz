@@ -19,10 +19,10 @@ public class EducationVo {
     Long year;
 
     @NotNull
-    @Size(max = 32)
+    @Size(max = 256)
     String title;
 
     @NotNull
-    @Size(max = 512)
+    @Size(max = 4096)
     String description;
 }

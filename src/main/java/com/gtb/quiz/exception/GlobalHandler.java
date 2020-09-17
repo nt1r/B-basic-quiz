@@ -19,4 +19,15 @@ public class GlobalHandler {
                 .message(exception.getMessage())
                 .build();
     }
+
+    @ExceptionHandler(EducationNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleEducationNotFoundException(EducationNotFoundException exception) {
+        return ErrorResponse.builder()
+                .timestamp(Instant.now().toString())
+                .status(404)
+                .error(HttpStatus.NOT_FOUND.getReasonPhrase())
+                .message(exception.getMessage())
+                .build();
+    }
 }

@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @Builder
 public class UserVo {
     @NotBlank
-    @Size(max = 16)
+    @Size(max = 128)
     String name;
 
     @NotNull
@@ -24,9 +24,9 @@ public class UserVo {
     Long age;
 
     @NotNull
-    @Size(min = 1, max = 64)
+    @Size(min = 1, max = 512)
     String avatar;
 
-    @Size(max = 128)
+    @Size(max = 1024)
     String description;
 }

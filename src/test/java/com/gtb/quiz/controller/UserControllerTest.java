@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
-    private final String PREFIX = "/v1/users";
+    private final String PREFIX = "/users";
     private final String ADD_USER_URL = PREFIX + "";
     private final String GET_USER_URL = PREFIX + "/%d";
     private final String ADD_EDUCATION_URL = PREFIX + "/%d/educations";
