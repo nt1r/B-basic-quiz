@@ -8,3 +8,14 @@ spring:
     hibernate:
       ddl-auto: create
     database-platform: org.hibernate.dialect.MySQLDialect
+    naming:
+      physical-strategy: org.hibernate:boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+flyway:
+  enabled: true
+  out-of-order: true
+  encoding: UTF-8
+  url: jdbc:mysql://localhost:3306
+  schemas: testdb
+  user: root
+  password: slq3584167
