@@ -15,9 +15,9 @@ public class Converter {
                 .build();
     }
 
-    public static Education convertEducationVo2Education(EducationVo educationVo, Long userId) {
+    public static Education convertEducationVo2Education(EducationVo educationVo, User user) {
         return Education.builder()
-                .userId(userId)
+                .user(user)
                 .year(educationVo.getYear())
                 .title(educationVo.getTitle())
                 .description(educationVo.getDescription())

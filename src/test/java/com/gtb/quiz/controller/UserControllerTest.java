@@ -41,13 +41,16 @@ class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    @Autowired
+    UserRepository userRepository;
+
     @BeforeEach
     void setUp() {
-        UserRepository.userMap.clear();
+        /*UserRepository.userMap.clear();
         UserRepository.autoIncreaseId.set(0);
 
         EducationRepository.educationMap.clear();
-        EducationRepository.autoIncreaseId.set(0);
+        EducationRepository.autoIncreaseId.set(0);*/
     }
 
     @AfterEach

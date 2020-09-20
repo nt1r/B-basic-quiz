@@ -1,19 +1,18 @@
 package com.gtb.quiz.repository;
 
 import com.gtb.quiz.entity.Education;
-import com.gtb.quiz.exception.EducationNotFoundException;
-import com.gtb.quiz.exception.UserNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
 
-@Component
-public class EducationRepository {
-    public final static Map<Long, Education> educationMap = new HashMap<>();
+@Repository
+public interface EducationRepository extends JpaRepository<Education, Long> {
+    @Query(nativeQuery = true, value = "SELECT * FROM cv_education WHERE user_id = :userId")
+    List<Education> findAllByUserId(@Param("userId") Long userId);
+    /*public final static Map<Long, Education> educationMap = new HashMap<>();
     public final static AtomicLong autoIncreaseId = new AtomicLong(0);
 
 
@@ -39,5 +38,5 @@ public class EducationRepository {
         });
 
         return educationList;
-    }
+    }*/
 }

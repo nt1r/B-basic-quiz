@@ -1,12 +1,13 @@
 package com.gtb.quiz.service;
 
-import com.gtb.quiz.entity.Education;
 import com.gtb.quiz.entity.User;
+import com.gtb.quiz.exception.UserNotFoundException;
 import com.gtb.quiz.repository.UserRepository;
 import com.gtb.quiz.util.Converter;
-import com.gtb.quiz.vo.EducationVo;
 import com.gtb.quiz.vo.UserVo;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -22,6 +23,10 @@ public class UserService {
     }
 
     public User getUserById(Long id) {
-        return userRepository.findById(id);
+        Optional<User> userOptional = userRepository.findById(id);
+        if (!userOptional.isPresent()) {
+            throw new UserNotFoundException(id);
+        }
+        return userOptional.get();
     }
 }
