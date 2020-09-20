@@ -1,5 +1,8 @@
 package com.gtb.quiz.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.gtb.quiz.serilizer.UserSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +23,8 @@ public class Education {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonSerialize(using = UserSerializer.class)
+    @JsonProperty(value = "userId")
     User user;
 
     Long year;

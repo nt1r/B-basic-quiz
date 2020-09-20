@@ -1,5 +1,6 @@
 package com.gtb.quiz.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class User {
     String avatar;
     String description;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     List<Education> educationList;
 }
