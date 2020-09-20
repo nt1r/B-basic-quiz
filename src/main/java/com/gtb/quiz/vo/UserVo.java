@@ -10,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-// GTB: + 有单独的 Vo
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

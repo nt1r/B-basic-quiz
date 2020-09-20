@@ -21,7 +21,7 @@ public class UserRepository {
 
     public User findById(Long id) {
         if (!isUserIdValid(id)) {
-            throw new UserNotFoundException("User id not found: " + id);
+            throw new UserNotFoundException(id);
         }
 
         return userMap.get(id);

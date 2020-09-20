@@ -2,6 +2,7 @@ package com.gtb.quiz.repository;
 
 import com.gtb.quiz.entity.Education;
 import com.gtb.quiz.exception.EducationNotFoundException;
+import com.gtb.quiz.exception.UserNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,9 +18,16 @@ public class EducationRepository {
 
 
     public Education save(Education education) {
+        if (!isUserIdValid(education.getUserId())) {
+            throw new UserNotFoundException(education.getUserId());
+        }
         education.setId(autoIncreaseId.incrementAndGet());
         educationMap.put(education.getId(), education);
         return education;
+    }
+
+    private boolean isUserIdValid(Long userId) {
+        return !findByUserId(userId).isEmpty();
     }
 
     public List<Education> findByUserId(Long userId) {
@@ -29,11 +37,6 @@ public class EducationRepository {
                 educationList.add(education);
             }
         });
-
-        // GTB: 为空时就返回 [] 就行了，不需要抛异常
-//        if (educationList.isEmpty()) {
-//            throw new EducationNotFoundException("Education not found, userId = " + userId);
-//        }
 
         return educationList;
     }
